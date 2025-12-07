@@ -1,0 +1,189 @@
+<!-- index.html - Single-page frontend for nelazim.com marketplace and AI tools prototype -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nelazim.com – AI powered marketplace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="logo" data-view="home">nelazim.com</div>
+      <nav class="nav-links">
+        <button data-view="home">Home</button>
+        <button data-view="products">Products</button>
+        <button data-view="services">Services</button>
+        <button data-view="ai-tools">AI Tools</button>
+        <button data-view="cart" id="nav-cart">Cart <span class="badge" id="cart-count" style="display:none;">0</span></button>
+        <button data-view="login" id="nav-login">Login</button>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <span class="user-label" id="user-label">Welcome</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="view active">
+      <div class="hero">
+        <p class="eyebrow">Marketplace + AI</p>
+        <h1>AI-powered next-generation marketplace experience.</h1>
+        <p class="subtitle">Products, services and AI tools in one platform. Whatever you need, it’s here.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" data-view="products">Explore Products</button>
+          <button class="btn-outline" data-view="ai-tools">Try AI Tools</button>
+        </div>
+      </div>
+      <div class="card-grid three">
+        <div class="card" data-view="products">
+          <h3>Products</h3>
+          <p>Discover curated physical and digital products from trusted sellers.</p>
+        </div>
+        <div class="card" data-view="services">
+          <h3>Services</h3>
+          <p>Book home or digital services tailored to your needs.</p>
+        </div>
+        <div class="card" data-view="ai-tools">
+          <h3>AI Tools</h3>
+          <p>Generate descriptions, ads, Instagram posts, and campaigns instantly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="view">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Products</p>
+          <h2>Curated picks for modern shoppers</h2>
+        </div>
+      </div>
+      <div id="product-grid" class="card-grid responsive"></div>
+    </section>
+
+    <section id="services" class="view">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h2>Book trusted experts and pros</h2>
+        </div>
+      </div>
+      <div id="service-grid" class="card-grid responsive"></div>
+    </section>
+
+    <section id="ai-tools" class="view">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">AI Tools</p>
+          <h2>Launch faster with integrated AI</h2>
+        </div>
+      </div>
+      <div class="ai-grid">
+        <div class="card ai-card">
+          <h3>Product Description AI</h3>
+          <div class="form-group">
+            <label>Product name</label>
+            <input id="pd-name" placeholder="e.g. EcoFlow Air Hoodie">
+          </div>
+          <div class="form-group">
+            <label>Features</label>
+            <textarea id="pd-features" placeholder="Lightweight, breathable fabric, hidden pocket"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Target audience</label>
+            <input id="pd-target" placeholder="Outdoor enthusiasts">
+          </div>
+          <button class="btn-primary" id="btn-pd">Generate Product Description</button>
+          <div class="output" id="pd-output"></div>
+        </div>
+
+        <div class="card ai-card">
+          <h3>Ad Copy AI</h3>
+          <div class="form-group">
+            <label>Platform</label>
+            <input id="ad-platform" placeholder="Meta / Google / TikTok">
+          </div>
+          <div class="form-group">
+            <label>Product / Service</label>
+            <input id="ad-product" placeholder="Noise-cancelling headphones">
+          </div>
+          <div class="form-group">
+            <label>Target audience</label>
+            <input id="ad-target" placeholder="Remote workers">
+          </div>
+          <button class="btn-primary" id="btn-ad">Generate Ad Copy</button>
+          <div class="output" id="ad-output"></div>
+        </div>
+
+        <div class="card ai-card">
+          <h3>Instagram Content AI</h3>
+          <div class="form-group">
+            <label>Concept</label>
+            <input id="ig-concept" placeholder="Weekend city escapes">
+          </div>
+          <div class="form-group">
+            <label>Tone</label>
+            <input id="ig-tone" placeholder="Playful and witty">
+          </div>
+          <div class="form-group">
+            <label>Keywords</label>
+            <input id="ig-keywords" placeholder="travel, minimal, cozy">
+          </div>
+          <button class="btn-primary" id="btn-ig">Generate Instagram Content</button>
+          <div class="output" id="ig-output"></div>
+        </div>
+
+        <div class="card ai-card">
+          <h3>Campaign Plan AI</h3>
+          <div class="form-group">
+            <label>Brand</label>
+            <input id="cp-brand" placeholder="Nelazim Originals">
+          </div>
+          <div class="form-group">
+            <label>Budget</label>
+            <input id="cp-budget" placeholder="$15,000">
+          </div>
+          <div class="form-group">
+            <label>Days</label>
+            <input id="cp-days" type="number" min="1" value="7">
+          </div>
+          <button class="btn-primary" id="btn-cp">Generate Campaign Plan</button>
+          <div class="output" id="cp-output"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cart" class="view">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Cart</p>
+          <h2>Your selected items</h2>
+        </div>
+      </div>
+      <div id="cart-items" class="cart-list"></div>
+      <div class="cart-summary">
+        <div>Total: <span id="cart-total">$0.00</span></div>
+      </div>
+    </section>
+
+    <section id="login" class="view">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Profile</p>
+          <h2>Quick demo login</h2>
+        </div>
+      </div>
+      <form id="login-form" class="card login-card">
+        <div class="form-group">
+          <label>Your name</label>
+          <input id="login-name" placeholder="Jane Doe">
+        </div>
+        <button class="btn-primary" type="submit">Save</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
